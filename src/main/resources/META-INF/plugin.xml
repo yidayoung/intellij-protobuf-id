@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>org.intellij.intellij-protobuf-id</id>
+    <name>Proto with id</name>
+    <vendor email="418621207@qq.com" url="https://github.com/yidayoung/intellij-erlang"/>
+
+    <description><![CDATA[
+    support @id tag for proto.<br>
+    <p>
+    add id tag for proto message, then generate id map for messages
+    </p>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends optional="true" config-file="proto_option.xml">idea.plugin.protoeditor</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+<!--        <localInspection language="protobuf" shortName="PbUndefinedIDInspection" displayName="Undefined id"-->
+<!--                         groupName="Proto-id" enabledByDefault="true" level="ERROR"-->
+<!--                         implementationClass="org.intellij.protoID.inspection.PbUndefinedIDInspection"/>-->
+<!--        <intentionAction>-->
+<!--            <className>org.intellij.protoID.intention.ProtoAddRouteIntention</className>-->
+<!--            <category>Proto-id</category>-->
+<!--        </intentionAction>-->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

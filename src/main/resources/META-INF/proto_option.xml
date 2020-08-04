@@ -1,0 +1,15 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection language="protobuf" shortName="PbUndefinedIDInspection" displayName="Undefined id"
+                         groupName="Proto-id" enabledByDefault="true" level="ERROR"
+                         implementationClass="org.intellij.protoID.inspection.PbUndefinedIDInspection"/>
+        <localInspection language="protobuf" shortName="PbReDefinedInspection" displayName="Tag redefined"
+                         groupName="Proto-id" enabledByDefault="true" level="ERROR"
+                         implementationClass="org.intellij.protoID.inspection.PbReDefinedInspection"/>
+        <annotator language="protobuf" implementationClass="org.intellij.protoID.highlighter.PbHighlightingAnnotator"/>
+        <intentionAction>
+            <className>org.intellij.protoID.intention.ProtoAddRouteIntention</className>
+            <category>Proto-id</category>
+        </intentionAction>
+    </extensions>
+</idea-plugin>
