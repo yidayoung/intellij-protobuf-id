@@ -6,7 +6,13 @@
     <description><![CDATA[
     support @id tag for proto.<br>
     <p>
-    add id tag for proto message, then generate id map for messages
+    add tag comment "@module_id = 1" at first line of proto file or change proto filename start with number
+    then you can add id quick by this plugin
+    </p>
+
+    <p>
+    if message field name is result, and editor on result, plugin support quick comment for result code,
+    you can change template format at Editor->Live Templates->proto->rc
     </p>
     ]]></description>
 

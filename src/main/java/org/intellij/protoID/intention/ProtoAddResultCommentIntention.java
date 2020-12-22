@@ -6,7 +6,6 @@ import com.intellij.codeInsight.template.impl.TemplateSettings;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiWhiteSpace;
@@ -16,10 +15,6 @@ import idea.plugin.protoeditor.lang.PbLanguage;
 import idea.plugin.protoeditor.lang.psi.PbSimpleField;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ProtoAddResultCommentIntention extends BaseIntentionAction {
   @Nls(capitalization = Nls.Capitalization.Sentence)

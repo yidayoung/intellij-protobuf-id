@@ -11,7 +11,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.IncorrectOperationException;
-import com.intellij.util.text.TextRangeUtil;
 import idea.plugin.protoeditor.lang.PbLanguage;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
