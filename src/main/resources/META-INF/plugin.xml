@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>org.intellij.intellij-protobuf-id</id>
-    <name>Proto with id</name>
-    <vendor email="418621207@qq.com" url="https://github.com/yidayoung/intellij-erlang"/>
+    <name>Proto with Id</name>
+    <vendor email="418621207@qq.com" url="https://github.com/yidayoung/intellij-protobuf-id"/>
 
     <description><![CDATA[
     support @id tag for proto.<br>
@@ -12,19 +12,27 @@
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
-    <depends optional="true" config-file="proto_option.xml">idea.plugin.protoeditor</depends>
-
+    <depends>idea.plugin.protoeditor</depends>
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-<!--        <localInspection language="protobuf" shortName="PbUndefinedIDInspection" displayName="Undefined id"-->
-<!--                         groupName="Proto-id" enabledByDefault="true" level="ERROR"-->
-<!--                         implementationClass="org.intellij.protoID.inspection.PbUndefinedIDInspection"/>-->
-<!--        <intentionAction>-->
-<!--            <className>org.intellij.protoID.intention.ProtoAddRouteIntention</className>-->
-<!--            <category>Proto-id</category>-->
-<!--        </intentionAction>-->
+        <localInspection language="protobuf" shortName="PbUndefinedIDInspection" displayName="Undefined id"
+                         groupName="Proto-id" enabledByDefault="true" level="ERROR"
+                         implementationClass="org.intellij.protoID.inspection.PbUndefinedIDInspection"/>
+        <localInspection language="protobuf" shortName="PbReDefinedInspection" displayName="Tag redefined"
+                         groupName="Proto-id" enabledByDefault="true" level="ERROR"
+                         implementationClass="org.intellij.protoID.inspection.PbReDefinedInspection"/>
+        <annotator language="protobuf" implementationClass="org.intellij.protoID.highlighter.PbHighlightingAnnotator"/>
+        <intentionAction>
+            <className>org.intellij.protoID.intention.ProtoAddRouteIntention</className>
+            <category>Proto-id</category>
+        </intentionAction>
+        <intentionAction>
+            <className>org.intellij.protoID.intention.ProtoAddResultCommentIntention</className>
+            <category>Proto-id</category>
+        </intentionAction>
+        <liveTemplateMacro implementation="org.intellij.protoID.template.macro.CurrentResultCodeMacro"/>
+        <defaultLiveTemplates file="/liveTemplates/templates.xml"/>
+        <liveTemplateContext implementation="org.intellij.liveTemplates.ProtobufContext"/>
     </extensions>
-
     <actions>
         <!-- Add your actions here -->
     </actions>

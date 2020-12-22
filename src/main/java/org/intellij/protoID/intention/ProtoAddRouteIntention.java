@@ -6,10 +6,12 @@ import com.intellij.codeInsight.template.TemplateManager;
 import com.intellij.codeInsight.template.impl.ConstantNode;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.IncorrectOperationException;
+import com.intellij.util.text.TextRangeUtil;
 import idea.plugin.protoeditor.lang.PbLanguage;
 import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
@@ -22,27 +24,31 @@ import java.util.List;
 
 public class ProtoAddRouteIntention extends BaseIntentionAction {
 
-  private final String name = "Add route";
   @Nls(capitalization = Nls.Capitalization.Sentence)
   @NotNull
   @Override
   public String getFamilyName() {
-    return name;
+    return "Proto id";
   }
 
   @Nls(capitalization = Nls.Capitalization.Sentence)
   @NotNull
   @Override
   public String getText() {
-    return name;
+    return "Add route";
   }
 
   @Override
   public boolean isAvailable(@NotNull Project project, Editor editor, PsiFile file) {
     if (!file.getManager().isInProject(file)) return false;
     if (!file.getLanguage().is(PbLanguage.INSTANCE)) return false;
-    PbMessageDefinition definition = findDefinition(file, editor.getCaretModel().getOffset());
+    int offset = editor.getCaretModel().getOffset();
+    PbMessageDefinition definition = findDefinition(file, offset);
     if (definition == null) return false;
+    PsiElement identifyingElement = definition.getIdentifyingElement();
+    if (identifyingElement == null) return false;
+    TextRange textRange = identifyingElement.getTextRange();
+    if (!textRange.contains(offset)) return false;
     List<String> routes = IDTagUtil.findRouteInComments(definition);
     return routes.isEmpty();
   }

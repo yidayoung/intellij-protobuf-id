@@ -1,0 +1,11 @@
+<templateSet group="proto">
+    <template name="rc" value="// $id$ - $comment$ - $desc$$END$" description="Add Result Code" toReformat="false"
+              toShortenFQNames="true">
+        <variable name="id" expression="currentResultCode()" defaultValue="" alwaysStopAt="false"/>
+        <variable name="comment" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="desc" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="PROTOBUF" value="true"/>
+        </context>
+    </template>
+</templateSet>

@@ -1,0 +1,4 @@
+message test{
+    // 1 - _ - _
+    optional uint64 result = 1;
+}

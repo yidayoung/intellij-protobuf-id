@@ -1,0 +1,3 @@
+message test{
+    optional uint64 result = 1;
+}
