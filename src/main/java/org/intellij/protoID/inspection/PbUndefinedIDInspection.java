@@ -4,6 +4,7 @@ import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.TextRange;
@@ -16,6 +17,7 @@ import idea.plugin.protoeditor.lang.psi.PbFile;
 import idea.plugin.protoeditor.lang.psi.PbMessageDefinition;
 import idea.plugin.protoeditor.lang.psi.PbVisitor;
 import idea.plugin.protoeditor.lang.psi.ProtoTokenTypes;
+import idea.plugin.protoeditor.lang.psi.impl.PbElementFactory;
 import org.intellij.protoID.IDTagUtil;
 import org.intellij.protoID.PbTags;
 import org.jetbrains.annotations.Nls;
@@ -66,10 +68,12 @@ public class PbUndefinedIDInspection extends ProtoIDInspectionBase {
       if (!(file instanceof PbFile)) return;
       Integer newID = IDTagUtil.genNewID((PbFile) file);
       if (newID == null) {
-        Messages.showInfoMessage("can't gen new ID, file need @module_id tag or file name contain number", "Proto Gen ID");
+        Messages.showInfoMessage("can't gen new ID, file need @module_id tag or file name start with number",
+                "Proto Gen ID");
         return;
       }
-      Editor editor = PsiEditorUtil.findEditor(psiElement);
+
+      Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
       if (editor != null) {
         int offset = psiElement.getTextOffset() - psiElement.getStartOffsetInParent();
         editor.getDocument().insertString(offset, String.format("// @id %d\n", newID));
@@ -100,7 +104,7 @@ public class PbUndefinedIDInspection extends ProtoIDInspectionBase {
         return;
       }
       List<PsiComment> comments = ((PbMessageDefinition) parent).getComments();
-      Editor editor = PsiEditorUtil.findEditor(psiElement);
+      Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
       for (PsiComment comment : comments){
         TextRange textRange = IDTagUtil.IndexTagInComment(comment.getText(), PbTags.TAG_ID);
         int textOffset = comment.getTextOffset();

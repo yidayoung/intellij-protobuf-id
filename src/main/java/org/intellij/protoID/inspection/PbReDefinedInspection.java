@@ -5,6 +5,7 @@ import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.openapi.editor.Editor;
+import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.text.StringUtil;
@@ -70,7 +71,7 @@ public class PbReDefinedInspection extends ProtoIDInspectionBase {
     public void applyFix(@NotNull Project project, @NotNull ProblemDescriptor descriptor) {
       PsiElement psiElement = descriptor.getPsiElement();
       if (!(psiElement instanceof PsiComment)) return;
-      Editor editor = PsiEditorUtil.findEditor(psiElement);
+      Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
       if (editor == null) return;
       int offset = psiElement.getTextOffset();
       String text = psiElement.getText();

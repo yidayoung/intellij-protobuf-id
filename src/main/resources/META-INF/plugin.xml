@@ -15,9 +15,9 @@
     you can change template format at Editor->Live Templates->proto->rc
     </p>
     ]]></description>
-
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
     <depends>idea.plugin.protoeditor</depends>
     <extensions defaultExtensionNs="com.intellij">
         <localInspection language="protobuf" shortName="PbUndefinedIDInspection" displayName="Undefined id"

@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.intellij'
-version '1.0-1'
+version '1.0.1'
 
 repositories {
     flatDir {
@@ -21,8 +21,8 @@ intellij {
     plugins 'idea.plugin.protoeditor:2.0'
 }
 patchPluginXml {
-    sinceBuild = '193'
+    sinceBuild = '201'
     untilBuild = '203.*'
-    changeNotes """
-      support new version of IDEA"""
+//    changeNotes """
+//      change support version"""
 }
